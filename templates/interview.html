@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Voice Interview Evaluator</title>
+
+    <style>
+
+        body{
+            font-family:Arial,sans-serif;
+            background:#f4f6f9;
+            padding:40px;
+        }
+
+        .container{
+            max-width:900px;
+            margin:auto;
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0px 5px 15px rgba(0,0,0,0.15);
+        }
+
+        h1{
+            text-align:center;
+            color:#0B2E33;
+            margin-bottom:20px;
+        }
+
+        label{
+            font-weight:bold;
+            color:#0B2E33;
+        }
+
+        select,
+        textarea{
+            width:100%;
+            padding:12px;
+            margin-top:8px;
+            margin-bottom:15px;
+            border:1px solid #ccc;
+            border-radius:8px;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            margin-top:10px;
+            background:#4F7C82;
+            color:white;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#0B2E33;
+        }
+
+        .question-box{
+            margin-top:20px;
+            background:#eef9fb;
+            padding:20px;
+            border-left:5px solid #4F7C82;
+            border-radius:10px;
+        }
+
+        .result-box{
+            margin-top:20px;
+            background:#eef9fb;
+            padding:20px;
+            border-left:5px solid #4F7C82;
+            border-radius:10px;
+        }
+
+        .status{
+            text-align:center;
+            margin-top:10px;
+            font-weight:bold;
+        }
+
+        pre{
+            white-space:pre-wrap;
+            margin:0;
+            font-family:Arial,sans-serif;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>AI Voice Interview Evaluator</h1>
+
+    <!-- Generate Question Form -->
+
+    <form method="POST">
+
+        <label>Select Skill</label>
+
+        <select name="skill" required>
+
+            <option value="">Choose Skill</option>
+
+            <option value="Python"
+            {% if skill=="Python" %}selected{% endif %}>
+            Python
+            </option>
+
+            <option value="Java"
+            {% if skill=="Java" %}selected{% endif %}>
+            Java
+            </option>
+
+            <option value="SQL"
+            {% if skill=="SQL" %}selected{% endif %}>
+            SQL
+            </option>
+
+            <option value="Machine Learning"
+            {% if skill=="Machine Learning" %}selected{% endif %}>
+            Machine Learning
+            </option>
+
+            <option value="Data Science"
+            {% if skill=="Data Science" %}selected{% endif %}>
+            Data Science
+            </option>
+
+        </select>
+
+        <button
+        type="submit"
+        name="action"
+        value="generate">
+        Generate Interview Question
+        </button>
+
+    </form>
+
+    {% if question %}
+
+    <div class="question-box">
+
+        <h3>Generated Question</h3>
+
+        <p>{{ question }}</p>
+
+    </div>
+
+    <br>
+
+    <!-- Evaluation Form -->
+
+    <form method="POST">
+
+        <input
+        type="hidden"
+        name="skill"
+        value="{{ skill }}">
+
+        <input
+        type="hidden"
+        name="question"
+        value="{{ question }}">
+
+        <label>Candidate Answer</label>
+
+        <textarea
+        id="answer"
+        name="answer"
+        rows="8"
+        placeholder="Speak or type answer here..."
+        required></textarea>
+
+        <button
+        type="button"
+        onclick="startRecognition()">
+        🎤 Start Recording
+        </button>
+
+        <button
+        type="button"
+        onclick="stopRecognition()">
+        ⏹ Stop Recording
+        </button>
+
+        <div
+        class="status"
+        id="status">
+        Not Recording
+        </div>
+
+        <button
+        type="submit"
+        name="action"
+        value="evaluate">
+        Evaluate Answer
+        </button>
+
+    </form>
+
+    {% endif %}
+
+    {% if result %}
+
+    <div class="result-box">
+
+        <h2>Evaluation Result</h2>
+
+        <pre>{{ result }}</pre>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+<script>
+
+let recognition;
+
+function startRecognition(){
+
+    const SpeechRecognition =
+    window.SpeechRecognition ||
+    window.webkitSpeechRecognition;
+
+    if(!SpeechRecognition){
+
+        alert("Speech Recognition not supported.");
+
+        return;
+    }
+
+    recognition =
+    new SpeechRecognition();
+
+    recognition.continuous = true;
+
+    recognition.interimResults = true;
+
+    recognition.lang = "en-US";
+
+    document.getElementById("status").innerHTML =
+    "🔴 Recording...";
+
+    recognition.start();
+
+    recognition.onresult = function(event){
+
+        let transcript = "";
+
+        for(let i=0;i<event.results.length;i++){
+
+            transcript +=
+            event.results[i][0].transcript + " ";
+
+        }
+
+        document.getElementById("answer").value =
+        transcript;
+
+    };
+
+}
+
+function stopRecognition(){
+
+    if(recognition){
+
+        recognition.stop();
+
+        document.getElementById("status").innerHTML =
+        "✅ Recording Complete";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

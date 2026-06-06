@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Senior Manager Dashboard</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #DDD1C7; /* Dust Storm */
+        color: #2b2b2b;
+    }
+
+    .navbar {
+        background: #4B4A67; /* Deep Indigo */
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+    }
+
+    .navbar a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        margin-left: 20px;
+        padding: 8px 12px;
+        border-radius: 6px;
+        transition: 0.3s;
+    }
+
+    .navbar a:hover {
+        background: #7E8987; /* Mummy's Tomb */
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 40px;
+        color: #4B4A67;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        padding: 40px;
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    .card {
+        background: #C2CFB2; /* Silver */
+        padding: 25px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        transition: transform 0.3s, background 0.3s;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        background: #8DB580; /* Dark Sea Green */
+    }
+
+    .card a {
+        text-decoration: none;
+        color: #2b2b2b;
+        font-weight: bold;
+        font-size: 16px;
+    }
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div><b>HRMS Dashboard</b></div>
+    <div>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<h1>Senior Manager Dashboard</h1>
+
+<div class="container">
+
+    <div class="card">
+        <a href="/attendance_dashboard">Attendance Dashboard</a>
+    </div>
+
+    <div class="card">
+        <a href="/performance_list">Performance Reports</a>
+    </div>
+
+    <div class="card">
+        <a href="/attrition">Attrition Prediction</a>
+    </div>
+
+</div>
+
+</body>
+</html>

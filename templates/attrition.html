@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attrition Prediction</title>
+</head>
+<body>
+
+<h1>AI Attrition Prediction</h1>
+
+<form method="POST">
+
+    <label>Select Employee</label>
+
+    <select name="employee_name" required>
+
+        <option value="">
+            Select Employee
+        </option>
+
+        {% for employee in employees %}
+
+        <option value="{{ employee[0] }}">
+            {{ employee[0] }}
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+    <br><br>
+
+    <input
+    type="number"
+    name="overtime"
+    placeholder="Overtime Hours"
+    required>
+
+    <br><br>
+
+    <button type="submit">
+        Predict Attrition
+    </button>
+
+</form>
+
+{% if result %}
+
+<h2>Prediction Result</h2>
+
+<pre>{{ result }}</pre>
+
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI HRMS — Employee Dashboard</title>
+
+<style>
+:root {
+  /* NEW COLOR PALETTE (from your image) */
+  --bg-base: #DDD1C7;        /* Dust Storm */
+  --bg-surface: #C2CFB2;     /* Silver */
+  --bg-card: #C2CFB2;
+  --bg-card-hover: #8DB580;  /* Dark Sea Green */
+  --sidebar-bg: #4B4A67;     /* Deep Indigo */
+
+  --accent-primary: #865D36;
+  --accent-secondary: #7E8987; /* Mummy's Tomb */
+  --accent-soft: #8DB580;
+
+  --text-primary: #1f1f1f;
+  --text-secondary: #3b3b3b;
+  --text-muted: #5a5a5a;
+
+  --border: rgba(75,74,103,0.15);
+
+  --sidebar-width: 268px;
+  --font: Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg-base);
+  color: var(--text-primary);
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  color: white;
+  position: fixed;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-logo {
+  padding: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.nav-item {
+  padding: 14px 20px;
+  text-decoration: none;
+  color: #eaeaea;
+  display: block;
+  transition: 0.3s;
+  font-size: 15px;
+}
+
+.nav-item:hover {
+  background: var(--accent-secondary);
+  color: white;
+}
+
+.nav-item.active {
+  background: var(--accent-primary);
+  color: white;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 20px;
+}
+
+.logout-btn {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  background: #865D36;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+/* MAIN */
+.main {
+  margin-left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+}
+
+/* TOPBAR */
+.topbar {
+  background: #4B4A67;
+  color: white;
+  padding: 18px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.role-badge {
+  background: #8DB580;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+/* CONTENT */
+.content {
+  padding: 40px;
+}
+
+/* WELCOME BOX */
+.welcome {
+  background: #C2CFB2;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  border-left: 6px solid #865D36;
+}
+
+/* CARDS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: #C2CFB2;
+  padding: 25px;
+  border-radius: 15px;
+  text-decoration: none;
+  color: #1f1f1f;
+  transition: 0.3s;
+  border: 1px solid var(--border);
+}
+
+.card:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-5px);
+  color: white;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 13px;
+  color: inherit;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sidebar-logo">
+    ⚡ AI HRMS
+  </div>
+
+  <a href="/attendance_list" class="nav-item active">📅 My Attendance</a>
+  <a href="/payroll_list" class="nav-item">💰 My Payroll</a>
+
+  <div class="sidebar-footer">
+    <a href="/logout" class="logout-btn">Logout</a>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <div class="topbar">
+    <div class="page-title">Employee Dashboard</div>
+    <div class="role-badge">Employee</div>
+  </div>
+
+  <div class="content">
+
+    <div class="welcome">
+      <h2>Welcome back 👋</h2>
+      <p>Check your attendance and payroll details in one place.</p>
+    </div>
+
+    <div class="grid">
+
+      <a href="/attendance_list" class="card">
+        <h3>My Attendance</h3>
+        <p>View your check-ins, check-outs, and leave records.</p>
+      </a>
+
+      <a href="/payroll_list" class="card">
+        <h3>My Payroll</h3>
+        <p>Check salary slips, deductions, and payments.</p>
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

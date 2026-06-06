@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Attendance Dashboard</title>
+
+    <style>
+
+        body{
+            font-family:Arial,sans-serif;
+            background:#f4f6f9;
+            padding:40px;
+        }
+
+        h1{
+            text-align:center;
+            color:#0B2E33;
+            margin-bottom:30px;
+        }
+
+        .dashboard{
+
+            display:grid;
+
+            grid-template-columns:
+            repeat(auto-fit,minmax(220px,1fr));
+
+            gap:20px;
+        }
+
+        .card{
+
+            background:white;
+
+            padding:25px;
+
+            border-radius:15px;
+
+            text-align:center;
+
+            box-shadow:
+            0px 5px 15px rgba(0,0,0,0.15);
+
+        }
+
+        .card h2{
+
+            color:#4F7C82;
+
+            margin-bottom:10px;
+        }
+
+        .number{
+
+            font-size:35px;
+
+            font-weight:bold;
+
+            color:#0B2E33;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>Attendance Dashboard</h1>
+
+<div class="dashboard">
+
+    <div class="card">
+
+        <h2>Total Employees</h2>
+
+        <div class="number">
+            {{ total_employees }}
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Present</h2>
+
+        <div class="number">
+            {{ present }}
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Absent</h2>
+
+        <div class="number">
+            {{ absent }}
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Work From Home</h2>
+
+        <div class="number">
+            {{ wfh }}
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Leave</h2>
+
+        <div class="number">
+            {{ leave }}
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

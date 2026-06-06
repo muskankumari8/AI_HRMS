@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Payroll Management</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#eef4f7;
+    padding:40px;
+}
+
+.container{
+
+    max-width:700px;
+
+    margin:auto;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0px 5px 20px rgba(0,0,0,0.15);
+}
+
+h1{
+
+    text-align:center;
+
+    color:#0B2E33;
+
+    margin-bottom:20px;
+}
+
+select,
+input{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-bottom:15px;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+}
+
+button{
+
+    width:100%;
+
+    padding:12px;
+
+    background:#4F7C82;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+}
+
+button:hover{
+
+    background:#0B2E33;
+}
+
+.success{
+
+    margin-top:20px;
+
+    background:#d4edda;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    color:#155724;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Payroll Management</h1>
+
+<form method="POST">
+
+<select
+name="employee_name"
+required>
+
+<option value="">
+Select Employee
+</option>
+
+{% for employee in employees %}
+
+<option value="{{ employee[0] }}">
+{{ employee[0] }}
+</option>
+
+{% endfor %}
+
+</select>
+
+<input
+type="number"
+name="basic_salary"
+placeholder="Basic Salary"
+required>
+
+<input
+type="number"
+name="bonus"
+placeholder="Bonus">
+
+<input
+type="number"
+name="deduction"
+placeholder="Deduction">
+
+<button type="submit">
+Generate Payroll
+</button>
+
+</form>
+
+{% if message %}
+
+<div class="success">
+
+{{ message }}
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+</html>
